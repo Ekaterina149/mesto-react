@@ -4,12 +4,15 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
-
+import React from "react";
 import { useState } from "react";
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+  console.log(selectedCard);
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
@@ -19,10 +22,14 @@ function App() {
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard(null);
   }
   return (
     <div className="page">
@@ -31,6 +38,7 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
+        onCardClick={handleCardClick}
       />
       <PopupWithForm
         name="edit"
@@ -126,6 +134,7 @@ function App() {
           </label>
         </>
       </PopupWithForm>
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
       <Footer />
     </div>

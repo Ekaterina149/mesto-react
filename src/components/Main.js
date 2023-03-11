@@ -11,7 +11,7 @@ function Main(props) {
   //   console.log(element.link);
   // });
 
-  const { onEditProfile, onAddPlace, onEditAvatar } = props;
+  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
   useEffect(() => {
     Promise.all([api.getData("/users/me"), api.getData("/cards")])
 
@@ -20,27 +20,11 @@ function Main(props) {
         setUserDescription(data[0].about);
         setUserAvatar(data[0].avatar);
         setCards([...data[1]]);
-        // console.log(data[1]); //это карточки
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  //   api
-  //     .getData("/cards")
-
-  //     .then((cardData) => {
-  //       let arr = cardData.forEach((element) => {
-  //         setCards([...cards, element]);
-  //       });
-  //       console.log(cards);
-  //       console.log(arr);
-  //       console.log(cardData);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   return (
     <main className="content">
@@ -77,7 +61,7 @@ function Main(props) {
       </section>
       <section className="elements">
         {cards.map((card) => (
-          <Card key={card._id} card={card} />
+          <Card key={card._id} card={card} onCardClick={onCardClick} />
         ))}
       </section>
     </main>

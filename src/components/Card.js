@@ -1,12 +1,20 @@
-function Card({ card }) {
+function Card({ card, onCardClick }) {
   //const { key, image, title, likes } = card;
   // console.log(image, title, likes);
   console.log(card);
+  function handleClick() {
+    onCardClick(card);
+  }
 
   return (
     <div className="element-template">
       <div className="element">
-        <img className="element__image" src={card.link} alt={card.name} />
+        <img
+          className="element__image"
+          src={card.link}
+          alt={card.name}
+          onClick={handleClick}
+        />
         <div className="element__capture">
           <h2 className="element__text">{card.name}</h2>
           <div className="element__like-container">
