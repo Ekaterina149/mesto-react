@@ -1,5 +1,5 @@
 function PopupWithForm(props) {
-  console.log(props);
+  //console.log(props);
   const { isOpen, name, onClose } = props;
   return (
     <div
