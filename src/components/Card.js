@@ -1,4 +1,4 @@
-function Card({ card, onCardClick }) {
+function Card({ card, onCardClick, onDeleteCard }) {
   //const { key, image, title, likes } = card;
   // console.log(image, title, likes);
   console.log(card);
@@ -22,7 +22,11 @@ function Card({ card, onCardClick }) {
             <p className="element__likes-amount">{card.likes.length}</p>
           </div>
         </div>
-        <button className="element__recyclebin" type="button"></button>
+        <button
+          className="element__recyclebin"
+          type="button"
+          onClick={onDeleteCard}
+        ></button>
       </div>
     </div>
   );

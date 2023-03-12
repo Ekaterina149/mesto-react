@@ -11,6 +11,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = useState(false);
   console.log(selectedCard);
 
   function handleEditProfileClick() {
@@ -25,11 +26,15 @@ function App() {
   function handleCardClick(card) {
     setSelectedCard(card);
   }
+  function handleDeleteCardClick() {
+    setDeleteCardPopupOpen(true);
+  }
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard(null);
+    setDeleteCardPopupOpen(false);
   }
   return (
     <div className="page">
@@ -39,12 +44,14 @@ function App() {
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
         onCardClick={handleCardClick}
+        onDeleteCard={handleDeleteCardClick}
       />
       <PopupWithForm
         name="edit"
         title="Редактировать профиль"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        buttonName="Сохранить"
       >
         <>
           <label className="popup__label">
@@ -82,6 +89,7 @@ function App() {
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
+        buttonName="Сохранить"
       >
         <>
           <label className="popup__label">
@@ -119,6 +127,7 @@ function App() {
         title="Обновить аватар"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
+        buttonName="Сохранить"
       >
         <>
           <label className="popup__label">
@@ -134,7 +143,17 @@ function App() {
           </label>
         </>
       </PopupWithForm>
+
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+      <PopupWithForm
+        name="delete-card"
+        title="Вы уверены?"
+        isOpen={isDeleteCardPopupOpen}
+        onClose={closeAllPopups}
+        buttonName="Да"
+      >
+        <></>
+      </PopupWithForm>
 
       <Footer />
     </div>

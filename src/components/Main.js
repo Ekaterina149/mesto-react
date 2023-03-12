@@ -7,19 +7,20 @@ function Main(props) {
   const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
   // console.log(cards);
-  // cards.forEach((element) => {
-  //   console.log(element.link);
-  // });
+  cards.forEach(function consoleDog(element) {
+    console.log(element.link);
+  });
 
-  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
+  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick, onDeleteCard } =
+    props;
   useEffect(() => {
     Promise.all([api.getData("/users/me"), api.getData("/cards")])
 
-      .then((data) => {
-        setUserName(data[0].name);
-        setUserDescription(data[0].about);
-        setUserAvatar(data[0].avatar);
-        setCards([...data[1]]);
+      .then(([userData, cardData]) => {
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+        setCards([...cardData]);
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +62,12 @@ function Main(props) {
       </section>
       <section className="elements">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={onCardClick} />
+          <Card
+            key={card._id}
+            card={card}
+            onCardClick={onCardClick}
+            onDeleteCard={onDeleteCard}
+          />
         ))}
       </section>
     </main>

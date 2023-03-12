@@ -1,6 +1,6 @@
 function PopupWithForm(props) {
   //console.log(props);
-  const { isOpen, name, onClose } = props;
+  const { isOpen, name, onClose, buttonName } = props;
   return (
     <div
       className={
@@ -23,9 +23,9 @@ function PopupWithForm(props) {
           <button
             className="popup__submit"
             type="submit"
-            aria-label="Сохранить"
+            aria-label={"Сохранить"}
           >
-            Сохранить
+            {buttonName}
           </button>
         </form>
       </div>
