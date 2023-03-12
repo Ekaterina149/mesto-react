@@ -1,4 +1,4 @@
-import { getDataHeaders, setDataHeaders, baseUrl } from "./utils";
+import { getDataHeaders, baseUrl } from "./utils";
 
 class Api {
   constructor(baseUrl, DataHeaders) {
