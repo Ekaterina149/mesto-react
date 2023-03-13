@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
-import { api } from "./utils/Api";
+import { api } from "../utils/Api";
 import Card from "./Card";
-function Main(props) {
+function Main({
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  onCardClick,
+  onDeleteCard,
+}) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
-  // console.log(cards);
-  cards.forEach(function consoleDog(element) {
-    console.log(element.link);
-  });
-
-  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick, onDeleteCard } =
-    props;
   useEffect(() => {
     Promise.all([api.getData("/users/me"), api.getData("/cards")])
 

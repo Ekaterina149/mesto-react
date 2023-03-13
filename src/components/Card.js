@@ -1,7 +1,4 @@
 function Card({ card, onCardClick, onDeleteCard }) {
-  //const { key, image, title, likes } = card;
-  // console.log(image, title, likes);
-  console.log(card);
   function handleClick() {
     onCardClick(card);
   }

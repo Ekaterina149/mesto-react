@@ -1,6 +1,4 @@
-function PopupWithForm(props) {
-  //console.log(props);
-  const { isOpen, name, onClose, buttonName } = props;
+function PopupWithForm({ isOpen, name, onClose, buttonName, children, title }) {
   return (
     <div
       className={
@@ -15,17 +13,17 @@ function PopupWithForm(props) {
           type="button"
           onClick={onClose}
         ></button>
-        <h2 className="popup__header">{props.title}</h2>
-        <form className="popup__form" name={props.name} method="get">
+        <h2 className="popup__header">{title}</h2>
+        <form className="popup__form" name={name} method="get">
           <fieldset className="popup__fieldset" id="fieldsetname">
-            {props.children}
+            {children}
           </fieldset>
           <button
             className="popup__submit"
             type="submit"
             aria-label={"Сохранить"}
           >
-            {buttonName}
+            {buttonName || "Сохранить"}
           </button>
         </form>
       </div>
