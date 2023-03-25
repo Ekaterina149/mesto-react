@@ -1,4 +1,12 @@
-function PopupWithForm({ isOpen, name, onClose, buttonName, children, title }) {
+function PopupWithForm({
+  isOpen,
+  name,
+  onClose,
+  buttonName,
+  children,
+  title,
+  onSubmit,
+}) {
   return (
     <div
       className={
@@ -14,7 +22,12 @@ function PopupWithForm({ isOpen, name, onClose, buttonName, children, title }) {
           onClick={onClose}
         ></button>
         <h2 className="popup__header">{title}</h2>
-        <form className="popup__form" name={name} method="get">
+        <form
+          className="popup__form"
+          name={name}
+          method="get"
+          onSubmit={onSubmit}
+        >
           <fieldset className="popup__fieldset" id="fieldsetname">
             {children}
           </fieldset>

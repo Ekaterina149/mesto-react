@@ -1,4 +1,4 @@
-import { getDataHeaders, baseUrl } from "./utils";
+import { getDataHeaders, setDataHeaders, baseUrl } from "./utils";
 
 class Api {
   constructor(baseUrl, DataHeaders) {
@@ -21,14 +21,15 @@ class Api {
     );
   }
   //метод записывает данные на сервер
-  setData(href, method, headers, bodyObject) {
+  setData(href, method, bodyObject) {
     return fetch(this._baseUrl + href, {
       method: method,
-      headers: headers,
+      headers: this._headers,
       body: bodyObject ? JSON.stringify(bodyObject) : "",
     }).then(this._checkRes);
   }
 }
 const api = new Api(baseUrl, getDataHeaders);
+const setApi = new Api(baseUrl, setDataHeaders);
 
-export { api };
+export { api, setApi };
