@@ -17,7 +17,11 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = useState(false);
-  const [currentUser, getCurrentUser] = useState({});
+  const [currentUser, getCurrentUser] = useState({
+    about: "",
+    avatar: "",
+    name: "",
+  });
   const [cards, setCards] = useState([]);
   console.log(cards);
   useEffect(() => {

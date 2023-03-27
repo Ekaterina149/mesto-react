@@ -32,7 +32,7 @@ function PopupWithForm({
             {children}
           </fieldset>
           <button
-            className="popup__submit"
+            className="popup__submit popup__submit_valid"
             type="submit"
             aria-label={"Сохранить"}
           >

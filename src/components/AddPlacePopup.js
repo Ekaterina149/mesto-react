@@ -33,7 +33,7 @@ function AddPlacePopup({ formName, title, isOpen, onClose, onAddPlace }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <>
+      <fieldset className="popup__fieldset" id="fieldsetPlacename">
         <label className="popup__label">
           <input
             className="popup__input popup__input_type_place"
@@ -67,7 +67,7 @@ function AddPlacePopup({ formName, title, isOpen, onClose, onAddPlace }) {
           />
           <span className="linkInput-error popup__input-error"></span>
         </label>
-      </>
+      </fieldset>
     </PopupWithForm>
   );
 }
