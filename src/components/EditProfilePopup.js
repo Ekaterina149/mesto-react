@@ -5,7 +5,7 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  function HandleChange(evt, stateFunction) {
+  function handleChange(evt, stateFunction) {
     stateFunction(evt.target.value);
   }
   useEffect(() => {
@@ -44,7 +44,7 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
             pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$"
             required
             onChange={(evt) => {
-              HandleChange(evt, setName);
+              handleChange(evt, setName);
             }}
           />
           <span className="nameInput-error popup__input-error"></span>
@@ -62,7 +62,7 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
             required
             value={description}
             onChange={(evt) => {
-              HandleChange(evt, setDescription);
+              handleChange(evt, setDescription);
             }}
           />
           <span className="jobInput-error popup__input-error"></span>

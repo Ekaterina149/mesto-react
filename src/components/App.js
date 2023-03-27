@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from "./ImagePopup";
 import React, { useState, useEffect } from "react";
 import { api, setApi } from "../utils/Api";
@@ -94,6 +95,18 @@ function App() {
       });
   }
 
+  function handleAddPlaceSubmit(cardInfo) {
+    setApi
+      .setData("/cards", "POST", cardInfo)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root">
@@ -116,43 +129,14 @@ function App() {
             onUpdateUser={handleUpdateUser}
           />
 
-          <PopupWithForm
+          <AddPlacePopup
             name="add"
             title="Новое место"
             isOpen={isAddPlacePopupOpen}
+            onAddPlace={handleAddPlaceSubmit}
             onClose={closeAllPopups}
-          >
-            <>
-              <label className="popup__label">
-                <input
-                  className="popup__input popup__input_type_name"
-                  type="text"
-                  id="nameInput"
-                  name="nameInput"
-                  placeholder="Имя"
-                  minLength="3"
-                  maxLength="40"
-                  pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$"
-                  required
-                />
-                <span className="nameInput-error popup__input-error"></span>
-              </label>
-              <label className="popup__label">
-                <input
-                  className="popup__input popup__input_type_job"
-                  type="text"
-                  id="jobInput"
-                  name="jobInput"
-                  placeholder="Деятельность"
-                  minLength="2"
-                  maxLength="200"
-                  pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$"
-                  required
-                />
-                <span className="jobInput-error popup__input-error"></span>
-              </label>
-            </>
-          </PopupWithForm>
+          />
+
           <EditAvatarPopup
             formName="avatar"
             title="Обновить аватар"
