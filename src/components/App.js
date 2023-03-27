@@ -19,7 +19,7 @@ function App() {
   const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = useState(false);
   const [currentUser, getCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  // console.log(currentUser);
+  console.log(cards);
   useEffect(() => {
     Promise.all([api.getData("/users/me"), api.getData("/cards")])
 
@@ -46,8 +46,9 @@ function App() {
   }
   function handleCardDelete(card) {
     setApi.setData(`/cards/${card._id}`, "DELETE").then((res) => {
-      console.log(res);
+      // console.log(cards);
       setCards((state) => state.filter((c) => c._id !== card._id));
+      // console.log(cards);
     });
   }
   function closeAllPopups() {

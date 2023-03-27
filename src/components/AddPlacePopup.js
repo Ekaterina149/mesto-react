@@ -1,24 +1,29 @@
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { useState, useContext } from "react";
+// import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { useState, useEffect } from "react";
 function AddPlacePopup({ formName, title, isOpen, onClose, onAddPlace }) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
-  const currentUser = useContext(CurrentUserContext);
+  // const currentUser = useContext(CurrentUserContext);
   function handleChange(evt, stateFunction) {
     stateFunction(evt.target.value);
   }
   function handleSubmit(evt) {
     // Запрещаем браузеру переходить по адресу формы
     evt.preventDefault();
-    console.log(currentUser);
+    // console.log(currentUser);
+    // Передаём значения управляемых компонентов во внешний обработчик
+    onAddPlace({
+      name,
+      link,
+    });
   }
-  // Передаём значения управляемых компонентов во внешний обработчик
-  onAddPlace({
-    name,
-    link,
-    owner: currentUser,
-  });
+  useEffect(() => {
+    if (!isOpen) {
+      setName("");
+      setLink("");
+    }
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -35,10 +40,11 @@ function AddPlacePopup({ formName, title, isOpen, onClose, onAddPlace }) {
             type="text"
             id="placeInput"
             name="name"
+            value={name}
             placeholder="Название"
-            minlength="2"
-            maxlength="30"
-            pattern="^[a-zA-ZА-Яа-яЁё\.\'\-\s]+$"
+            minLength="2"
+            maxLength="30"
+            // pattern="^[a-zA-ZА-Яа-яЁё\.\'\-\s]+$"
             required
             onChange={(evt) => {
               handleChange(evt, setName);
@@ -52,6 +58,7 @@ function AddPlacePopup({ formName, title, isOpen, onClose, onAddPlace }) {
             type="url"
             id="linkInput"
             name="link"
+            value={link}
             placeholder="Ссылка на картинку"
             required
             onChange={(evt) => {

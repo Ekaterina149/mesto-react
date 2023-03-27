@@ -13,7 +13,7 @@ function Main({
 }) {
   // const [cards, setCards] = useState([]);
   const userData = useContext(CurrentUserContext);
-  console.log(userData);
+  // console.log(userData);
   // useEffect(() => {
   //   Promise.all([api.getData("/users/me"), api.getData("/cards")])
 

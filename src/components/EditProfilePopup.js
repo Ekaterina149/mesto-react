@@ -8,10 +8,14 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
   function handleChange(evt, stateFunction) {
     stateFunction(evt.target.value);
   }
+ 
   useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser]);
+    if (!isOpen){
+      setName(currentUser.name);
+      setDescription(currentUser.about);
+    }
+    
+  }, [isOpen, currentUser]);
   function handleSubmit(evt) {
     // Запрещаем браузеру переходить по адресу формы
     evt.preventDefault();
@@ -44,7 +48,7 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
             pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$"
             required
             onChange={(evt) => {
-              handleChange(evt, setName);
+             handleChange(evt, setName);
             }}
           />
           <span className="nameInput-error popup__input-error"></span>
@@ -62,7 +66,7 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
             required
             value={description}
             onChange={(evt) => {
-              handleChange(evt, setDescription);
+             handleChange(evt, setDescription);
             }}
           />
           <span className="jobInput-error popup__input-error"></span>
