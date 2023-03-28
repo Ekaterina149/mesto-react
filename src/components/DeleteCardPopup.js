@@ -19,7 +19,7 @@ function DeleteCardPopup({
       title={title}
       isOpen={isOpen}
       onClose={onClose}
-      // buttonName="Да"
+      buttonName="Да"
       onSubmit={handleSubmit}
       isLoading={isLoading}
     >

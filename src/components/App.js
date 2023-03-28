@@ -8,7 +8,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from "./ImagePopup";
 import DeleteCardPopup from "./DeleteCardPopup";
 import React, { useState, useEffect } from "react";
-import { api, setApi } from "../utils/Api";
+import { api, setApi } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
@@ -56,6 +56,7 @@ function App() {
     setDeletePlaceConfirm({ isOpen: true, card: card });
   }
   function handleCardDelete(card) {
+    setLoading(true);
     setApi
       .setData(`/cards/${card._id}`, "DELETE")
       .then((res) => {
@@ -64,7 +65,8 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .finally(() => setLoading(false));
   }
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -102,9 +104,10 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
-      .finally(setLoading(false));
+      .finally(() => setLoading(false));
   }
   function handleUpdateAvatar(link) {
+    setLoading(true);
     setApi
       .setData("/users/me/avatar", "PATCH", { avatar: link })
       .then((updatedAvatar) => {
@@ -113,10 +116,12 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   function handleAddPlaceSubmit(cardInfo) {
+    setLoading(true);
     setApi
       .setData("/cards", "POST", cardInfo)
       .then((newCard) => {
@@ -125,7 +130,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   return (

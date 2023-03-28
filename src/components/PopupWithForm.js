@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 function PopupWithForm({
   isOpen,
   name,
@@ -8,6 +9,12 @@ function PopupWithForm({
   onSubmit,
   isLoading,
 }) {
+  const submitBtnRef = useRef();
+  useEffect(() => {
+    submitBtnRef.current.textContent = isLoading
+      ? "Сохранение"
+      : buttonName || "Сохранить";
+  }, [buttonName, isLoading]);
   return (
     <div
       className={
@@ -36,8 +43,9 @@ function PopupWithForm({
             className="popup__submit popup__submit_valid"
             type="submit"
             aria-label={"Сохранить"}
+            ref={submitBtnRef}
           >
-            {isLoading ? "Сохранение" : "Сохранить"}
+            {""}
           </button>
         </form>
       </div>
