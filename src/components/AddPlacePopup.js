@@ -1,7 +1,14 @@
 import PopupWithForm from "./PopupWithForm";
 // import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useState, useEffect } from "react";
-function AddPlacePopup({ formName, title, isOpen, onClose, onAddPlace }) {
+function AddPlacePopup({
+  formName,
+  title,
+  isOpen,
+  onClose,
+  onAddPlace,
+  isLoading,
+}) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   // const currentUser = useContext(CurrentUserContext);
@@ -32,6 +39,7 @@ function AddPlacePopup({ formName, title, isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isLoading={isLoading}
     >
       <fieldset className="popup__fieldset" id="fieldsetPlacename">
         <label className="popup__label">

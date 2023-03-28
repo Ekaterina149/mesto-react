@@ -8,7 +8,7 @@ function Main({
   onAddPlace,
   onEditAvatar,
   onCardClick,
-  onDeleteCard,
+  onDeleteCardClick,
   onCardLike,
 }) {
   // const [cards, setCards] = useState([]);
@@ -67,8 +67,8 @@ function Main({
             key={card._id}
             card={card}
             onCardClick={onCardClick}
-            onDeleteCard={onDeleteCard}
             onCardLike={onCardLike}
+            onDeleteCardClick={onDeleteCardClick}
           />
         ))}
       </section>

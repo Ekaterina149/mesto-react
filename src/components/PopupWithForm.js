@@ -6,6 +6,7 @@ function PopupWithForm({
   children,
   title,
   onSubmit,
+  isLoading,
 }) {
   return (
     <div
@@ -36,7 +37,7 @@ function PopupWithForm({
             type="submit"
             aria-label={"Сохранить"}
           >
-            {buttonName || "Сохранить"}
+            {isLoading ? "Сохранение" : "Сохранить"}
           </button>
         </form>
       </div>

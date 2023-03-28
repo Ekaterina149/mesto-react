@@ -1,20 +1,26 @@
 import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import React, { useState, useEffect, useContext } from "react";
-function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
+function EditProfilePopup({
+  formName,
+  title,
+  isOpen,
+  onClose,
+  onUpdateUser,
+  isLoading,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   function handleChange(evt, stateFunction) {
     stateFunction(evt.target.value);
   }
- 
+
   useEffect(() => {
-    if (!isOpen){
+    if (!isOpen) {
       setName(currentUser.name);
       setDescription(currentUser.about);
     }
-    
   }, [isOpen, currentUser]);
   function handleSubmit(evt) {
     // Запрещаем браузеру переходить по адресу формы
@@ -33,6 +39,7 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isLoading={isLoading}
     >
       <>
         <label className="popup__label">
@@ -48,7 +55,7 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
             pattern="^[a-zA-ZА-Яа-яЁё\s\-]+$"
             required
             onChange={(evt) => {
-             handleChange(evt, setName);
+              handleChange(evt, setName);
             }}
           />
           <span className="nameInput-error popup__input-error"></span>
@@ -66,7 +73,7 @@ function EditProfilePopup({ formName, title, isOpen, onClose, onUpdateUser }) {
             required
             value={description}
             onChange={(evt) => {
-             handleChange(evt, setDescription);
+              handleChange(evt, setDescription);
             }}
           />
           <span className="jobInput-error popup__input-error"></span>
