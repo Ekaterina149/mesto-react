@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Card from "./Card";
 
@@ -11,22 +11,7 @@ function Main({
   onDeleteCardClick,
   onCardLike,
 }) {
-  // const [cards, setCards] = useState([]);
   const userData = useContext(CurrentUserContext);
-  // console.log(userData);
-  // useEffect(() => {
-  //   Promise.all([api.getData("/users/me"), api.getData("/cards")])
-
-  //     .then(([userData, cardData]) => {
-  //       setUserName(userData.name);
-  //       setUserDescription(userData.about);
-  //       setUserAvatar(userData.avatar);
-  //       setCards([...cardData]);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
 
   return (
     <main className="content">
