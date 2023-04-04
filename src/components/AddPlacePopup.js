@@ -41,7 +41,7 @@ function AddPlacePopup({
       onSubmit={handleSubmit}
       isLoading={isLoading}
     >
-      <fieldset className="popup__fieldset" id="fieldsetPlacename">
+      <>
         <label className="popup__label">
           <input
             className="popup__input popup__input_type_place"
@@ -75,7 +75,7 @@ function AddPlacePopup({
           />
           <span className="linkInput-error popup__input-error"></span>
         </label>
-      </fieldset>
+      </>
     </PopupWithForm>
   );
 }
